@@ -53,46 +53,8 @@ public class PuntosCardinales {
         
         String nuevoTexto="MapCardinales.txt";
         
-        
-        
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(nuevoTexto))) {
-            
-            for (Map.Entry<String, Integer> entry : mapPuntosCardinales.entrySet()) {
-                
-                tmp=entry.getKey()+"-"+entry.getValue();
-                
-                flujo.write(tmp);
-                
-                flujo.newLine();
-                
-            }
-            // Metodo fluh() guarda cambios en disco 
-            flujo.flush();
-            System.out.println("Fichero " + nuevoTexto + " creado correctamente.");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        System.out.println("Fichero creado");
-        System.out.println("Leyendo map");
-        
-        try (Scanner datosFichero = new Scanner(new File(nuevoTexto), "UTF-8")) {
-            // hasNextLine devuelve true mientras haya líneas por leer
-            while (datosFichero.hasNextLine()) {
-                // Guarda la línea completa en un String
-                linea = datosFichero.nextLine();
-                // Se guarda en el array de String cada elemento de la
-                // línea en función del carácter separador de campos del fichero CSV
-                
-                
-                System.out.println(linea);
-                
-                
-                
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        leerTextoAPartirMap(mapPuntosCardinales, nuevoTexto);
+       
         
     }
     
@@ -184,10 +146,52 @@ public class PuntosCardinales {
     
     
     }
-    public static void leerTextoAPartirMap(Map<String,Integer> m){
+    public static void leerTextoAPartirMap(Map<String,Integer> m, String nuevoTexto){
     
-    
-    
+          
+        String tmp;
+        
+        String[] tokens;
+        String linea;
+     
+        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(nuevoTexto))) {
+            
+            for (Map.Entry<String, Integer> entry : m.entrySet()) {
+                
+                tmp=entry.getKey()+"-"+entry.getValue();
+                
+                flujo.write(tmp);
+                
+                flujo.newLine();
+                
+            }
+            // Metodo fluh() guarda cambios en disco 
+            flujo.flush();
+            System.out.println("Fichero " + nuevoTexto + " creado correctamente.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        System.out.println("Fichero creado");
+        System.out.println("Leyendo map del fichero");
+        
+        try (Scanner datosFichero = new Scanner(new File(nuevoTexto), "UTF-8")) {
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                
+                
+                System.out.println(linea);
+                
+                
+                
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     
     
     
