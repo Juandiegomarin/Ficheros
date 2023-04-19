@@ -23,7 +23,8 @@ public class PuntosCardinales {
         List<String> puntosCardinales= new ArrayList<>();
                 
         String fichero= "localizaciones.txt";
-        
+        String tmp;
+        String linea;
         puntosCardinales= anadirCardinalLista(fichero);
         
         
